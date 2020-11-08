@@ -5,58 +5,105 @@
 //3. თუ მაუსს მივიტანთ ფოტოსთან, არ უნდა შეიცვალოს მანამ, სანამ არ მოვაშორებთ მაუსს//
 //4. თუ წრეზე დაჭერით ავირჩევ ფოტოს უნდა განახლდეს ტაიმერი და იმ ფოტოდან განაგრძოს მუშაობა//
 
-const images = [ //მასივში შევინახე ფოტოს მისამართები
+//მასივში შევინახე ფოტოს მისამართები
+const images = [ 
     "./assets/images/0.png",
     "./assets/images/1.png",
     "./assets/images/2.png",
     "./assets/images/3.png",
     "./assets/images/4.png",
     "./assets/images/5.png", 
+    "./assets/images/6.png",
+    "./assets/images/7.png",
+    "./assets/images/8.png",
+    "./assets/images/9.png",
+    "./assets/images/10.png",
+    "./assets/images/11.png",
+    "./assets/images/12.png",
+    "./assets/images/13.png",    
 ];
 
-const imagesDiv = document.getElementById("images"); //ცვლადში შევინახე დივი, სადაც უნდა ჩაიყაროს ფოტო
-const buttonsDiv = document.getElementById("buttons"); //ცვლადში შევინახე დივი, დადაც უნდა ჩაიყაროს ღილაკები
-const myImage = document.getElementById("my-image"); //პირველ დივში შევქმენი ფოტო 
-myImage.setAttribute('src', images[0]); //ფოტოს მივანიჭე მისამართი, ფოტო რომ გამოჩნდეს
+//ცვლადში შევინახე დივი, სადაც უნდა ჩაიყაროს ფოტო
+const imagesDiv = document.getElementById("images"); 
+//ცვლადში შევინახე დივი, დადაც უნდა ჩაიყაროს ღილაკები
+const buttonsDiv = document.getElementById("buttons"); 
+//პირველ დივში შევქმენი ფოტო 
+const myImage = document.getElementById("my-image"); 
+//ფოტოს მივანიჭე მისამართი, ფოტო რომ გამოჩნდეს
+myImage.setAttribute('src', images[0]); 
 
-for(let i=0; i<images.length; i++){ //მასივს გადავყვებით ფორით
-    const image=document.createElement("img"); //ყოველი i-თვის შევქმენი ფოტო
-    image.setAttribute('src', images[i]); //შექმნილ ფოტოს ატრიბუტის სახით მივეცი src ატრიბუტი და მისამართი მასივიდან 
+//მასივს გადავყვებით ფორით
+for(let i=0; i<images.length; i++){ 
+    //ყოველი i-თვის შევქმენი ფოტო
+    const image=document.createElement("img"); 
+    //შექმნილ ფოტოს ატრიბუტის სახით მივეცი src ატრიბუტი და მისამართი მასივიდან 
+    image.setAttribute('src', images[i]); 
 
-    const button=document.createElement("button"); //ყოველი i-თვის შევქმენი ღილაკი
-    button.id = i; //ღილაკს მივანიჭეთ i აიდად, მასივის ინდექსი და ღილაკის აიდი ერთნაირი იქნება და მარტივად გამოვიტან ფოტოს
-
-    imagesDiv.appendChild(image); //დივში ჩავაგდე ფოტო
-    buttonsDiv.appendChild(button); //დივში ჩავაგდე ღილაკი
+    //ყოველი i-თვის შევქმენი ღილაკი
+    const button=document.createElement("button"); 
+    //ღილაკს მივანიჭეთ i აიდად, მასივის ინდექსი და ღილაკის აიდი ერთნაირი იქნება და მარტივად გამოვიტან ფოტოს
+    button.id = i; 
+   
+    //დივში ჩავაგდე ფოტო
+    imagesDiv.appendChild(image); 
+    //დივში ჩავაგდე ღილაკი
+    buttonsDiv.appendChild(button); 
 }
 
+//პირველი ღილაკს გაშვებისას ეგრევე მივანიჭე ფერი. css-ში გავაკეთე კლასი, რომელიც ღილაკში მიანიჭებს შავ ფერს
+document.getElementById(0).classList.add("button-color");
+ 
+//ცვლადში უნდა შევინახო ღილაკის აიდი 
 let y=0;
 buttonsDiv.addEventListener('click', function(e){
+    //ღილაკზე კლიკის დროს თაიმერს ვთიშავთ
     clearInterval(TimeInterval);
-    if(e.target.tagName ==="BUTTON"){ //თუ დაეკლიკა ღილაკს, ვღებულობთ მის აიდს
-        myImage.setAttribute('src', images[e.target.id]);
-        //პირველი დივის ფოტოს ატრიბუტად ვანიჭებთ მასივის იმ ელემენტს, რომელსაც მოგვცემს დაკლიკებული ღილაკის აიდი
-        y=e.target.id;
-        console.log(y);
-        console.log('y3');
-        tamer();
+    //თუ მოსმენისას tagName დაემთხვევა ღილაკის სახელს    
+    if(e.target.tagName ==="BUTTON"){ 
+        //ზედა პირველი დივის ფოტოს ატრიბუტად ვანიჭებთ მასივის იმ ელემენტს, რომელსაც მოგვცემს დაკლიკებული ღილაკის აიდი
+        myImage.setAttribute('src', images[e.target.id]);        
+        // + ით სტრინგი გადავაქციე რიცხვად, ცვალში შევინახეთ დაკლიკებული ღილაკის აიდი
+        y=+e.target.id;
+        activateButton();
+        taimer();
     }
 });
 
-tamer();
+taimer();
 
-function tamer (){    
+function taimer (){    
+    //ცვალში შევინახე setInterval, შემდგომ რომ გავთიშო
     TimeInterval = setInterval(() => {
-        y=y+1;   
-        if(y < images.length){
-            myImage.setAttribute('src', images[y]);
-            console.log(y);
-            console.log('y1');
-        }else{
+        //კლიკის დროს რა მნიშნელობაც გადაეცემა ცვალს +1-ით გაარძელებს  
+        y++;
+        if(y == images.length){
             y=0;
-            myImage.setAttribute('src', images[y]);
-            console.log(y);
-            console.log('y2');
         }
-    }, 2000);
+        //თანმიმდევრობით გამოიტანე შემდეგ ფოტოებს
+        myImage.setAttribute('src', images[y]);        
+        activateButton();        
+    }, 1000);
 }
+
+function activateButton(){
+    //აქტიური ფოტოს შესაბამის ღილაკს ეგრევე მივანიჭე ფერი (სიმრავლეში იქნება ერთი ატქიური ღილაკი, ამიტომ მივანიჭე 0)
+    const activeButton = document.getElementsByClassName("button-color")[0];
+
+    //თუ აქტიური ღილაკს აღვს ფერი
+    if(activeButton){
+        //აქტიურ ღილაკს ფერი მოეშალოს
+        activeButton.classList.remove("button-color");
+    }   
+    //ყოველ ახალ ღილას აიდით y შეეცვალოს ფერი (ფოტოც იცლება და შესაბამისად ღილაკის ფერიც)
+    document.getElementById(y).classList.add('button-color');
+}
+
+//მაუსის მიტანოს დროს ტაიმერი გაჩერდეს
+myImage.addEventListener("mouseenter", () =>{
+    clearInterval(TimeInterval);
+});
+
+//მაუსის გატანოს დროს ტაიმერი ჩაირთოს
+myImage.addEventListener("mouseleave", () =>{
+    taimer();
+});

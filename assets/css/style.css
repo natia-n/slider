@@ -10,7 +10,7 @@
 }
 
 .header img{
-    width: 400px;    
+    width: 500px;    
 }
 
 .button-color{
@@ -21,7 +21,6 @@
 
 .buttons{
     width: 100%;
-    height: 80px;
     text-align: center;
 }
 
@@ -29,11 +28,25 @@
     margin: 10px 5px;
     width: 16px;
     height: 16px;
-    cursor: pointer;
+    cursor: pointer;    
 }
 
 .buttons button:hover{
     background-color: black;
+}
+/*bitton-tomer*/
+
+.button-timer{
+    width: 100%;
+    text-align: center;
+}
+
+.button-timer button{
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
 }
 
 /*content*/
@@ -41,7 +54,7 @@
 .images{
     width: 100%;
     text-align: left;
-    /* display: none; */
+    display: none;
 }
 
 .images img{

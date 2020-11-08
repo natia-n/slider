@@ -32,6 +32,11 @@ const myImage = document.getElementById("my-image");
 //ფოტოს მივანიჭე მისამართი, ფოტო რომ გამოჩნდეს
 myImage.setAttribute('src', images[0]); 
 
+let time1=document.getElementById('time+');
+let time2=document.getElementById('time-');
+//setIntervalis დრო
+let timeSetInterval=1000;
+
 //მასივს გადავყვებით ფორით
 for(let i=0; i<images.length; i++){ 
     //ყოველი i-თვის შევქმენი ფოტო
@@ -52,7 +57,7 @@ for(let i=0; i<images.length; i++){
 
 //პირველი ღილაკს გაშვებისას ეგრევე მივანიჭე ფერი. css-ში გავაკეთე კლასი, რომელიც ღილაკში მიანიჭებს შავ ფერს
 document.getElementById(0).classList.add("button-color");
- 
+
 //ცვლადში უნდა შევინახო ღილაკის აიდი 
 let y=0;
 buttonsDiv.addEventListener('click', function(e){
@@ -82,7 +87,7 @@ function taimer (){
         //თანმიმდევრობით გამოიტანე შემდეგ ფოტოებს
         myImage.setAttribute('src', images[y]);        
         activateButton();        
-    }, 1000);
+    }, timeSetInterval);
 }
 
 function activateButton(){
@@ -105,5 +110,17 @@ myImage.addEventListener("mouseenter", () =>{
 
 //მაუსის გატანოს დროს ტაიმერი ჩაირთოს
 myImage.addEventListener("mouseleave", () =>{
+    taimer();
+});
+
+time1.addEventListener("click", () =>{
+    clearInterval(TimeInterval);
+    timeSetInterval+=300;
+    taimer();
+});
+
+time2.addEventListener("click", () =>{
+    clearInterval(TimeInterval);
+    timeSetInterval-=300;
     taimer();
 });

@@ -70,13 +70,13 @@ buttonsDiv.addEventListener('click', function(e){
         // + ით სტრინგი გადავაქციე რიცხვად, ცვალში შევინახეთ დაკლიკებული ღილაკის აიდი
         y=+e.target.id;
         activateButton();
-        taimer();
+        timer();
     }
 });
 
-taimer();
+timer();
 
-function taimer (){    
+function timer (){    
     //ცვალში შევინახე setInterval, შემდგომ რომ გავთიშო
     TimeInterval = setInterval(() => {
         //კლიკის დროს რა მნიშნელობაც გადაეცემა ცვალს +1-ით გაარძელებს  
@@ -110,17 +110,17 @@ myImage.addEventListener("mouseenter", () =>{
 
 //მაუსის გატანოს დროს ტაიმერი ჩაირთოს
 myImage.addEventListener("mouseleave", () =>{
-    taimer();
+    timer();
 });
 
 time1.addEventListener("click", () =>{
     clearInterval(TimeInterval);
     timeSetInterval+=300;
-    taimer();
+    timer();
 });
 
 time2.addEventListener("click", () =>{
     clearInterval(TimeInterval);
     timeSetInterval-=300;
-    taimer();
+    timer();
 });

@@ -1,20 +1,26 @@
-
-
 /*header*/
+.single-item{
+    text-align: center;
+   
+}
 
 .header{
-    width: auto;
-    height: 100%;
-    text-align: center;
-    margin: 40px;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    position: relative;
 }
 
 .header img{
-    width: 500px;    
+    width: 500px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+    left: 0;
 }
 
-.button-color{
-    background-color: black;
+.header .add-opacity{
+    opacity: 1;
 }
 
 /*button*/
@@ -24,16 +30,21 @@
     text-align: center;
 }
 
+.button-color{
+    background-color: black;
+}
+
 .buttons button{
     margin: 10px 5px;
     width: 16px;
     height: 16px;
-    cursor: pointer;    
+    cursor: pointer;   
 }
 
 .buttons button:hover{
     background-color: black;
 }
+
 /*bitton-tomer*/
 
 .button-timer{
@@ -49,15 +60,3 @@
     text-align: center;
 }
 
-/*content*/
-
-.images{
-    width: 100%;
-    text-align: left;
-    display: none;
-}
-
-.images img{
-    width: 100px;
-    margin: 5px;
-}
